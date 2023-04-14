@@ -1,0 +1,38 @@
+<?php
+// $admins = $this->admins;
+$admin = $this->getCollection();
+// echo "<pre>";
+// print_r($admin);
+?>
+<body>
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('admin' , 'save' , ['id' => $admin->admin_id]) ?>" method="post">
+    <div class="mainadd">
+
+        <div class="eachdiv">
+            <label>email</label>
+            <input type="email" name="admin[email]" value="<?php echo $admin->email; ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>pASSwORD</label>
+            <input type="password" name="admin[password]" value="<?php echo $admin->password ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>sTATUS</label>
+            <select name="admin[status]">
+                <option value="active" <?php if($admin->status == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($admin->status == 'inactive'){echo "selected";} ?>>Inactive</option>
+            </select>
+        </div>
+
+        
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('admin' , 'grid',[], true) ?>">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

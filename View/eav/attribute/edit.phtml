@@ -1,0 +1,130 @@
+ <?php
+$attributes = $this->getCollection();
+// echo "<pre>";
+// print_r($attributes);
+print_r($attributes->attribute_id);
+?>
+
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('eav_attribute','save', ['id' => $attributes->attribute_id], false) ?>" method="post">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>Add / Edit Attribute</label>
+        </div>
+        
+        <div class="eachdiv">
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('eav_attribute', 'grid',[],true) ?>">CANCEL</a>
+            <!-- <button>SAVE</button> -->
+            <input type="submit" />
+        </div>
+
+        <div class="eachdiv">
+            <label>Entity Type ID</label>
+            <input type="text" name="attribute[entity_type_id]" value="<?php echo $attributes->entity_type_id ?>" required />
+        </div>
+
+        <div class="eachdiv">
+            <label>CODE</label>
+            <input type="text" name="attribute[code]" value="<?php echo $attributes->code; ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>BACKEND TYPE</label>
+            <select name="attribute[backend_type]" >
+                <option value="integer">Integer</option>
+                <option value="varchar">Varchar</option>
+                <option value="decimal">Decimal</option>
+                <option value="datetime">Date and Time</option>
+                <option value="text">Text</option>
+            </select>
+        </div>
+        
+        <!-- <div class="eachdiv">
+            <label>STATUS</label>
+            <input type="" name="attribute[status]" value="<?php echo $attributes->status ?>" />
+        </div> -->
+
+        <div class="eachdiv">
+            <label>INPUT TYPE</label>
+             <select id="inputTypeSelect" name="attribute[input_type]" onchange="changeInputType(this)">
+                <option value="textBox">Text Box</option>
+                <option value="textArea">Text Area</option>
+                <option value="select">Select</option>
+                <option value="multiSelect">Multi Select</option>
+                <option value="radio">Radio</option>
+                <option value="checkBox">Check Box</option>
+            </select>
+        </div>
+        
+        <div class="eachdiv">
+            <label>BACKEND MOD</label>
+            <input type="text" name="attribute[backend_model]" value="<?php echo $attributes->backend_model; ?>" >
+        </div>
+        
+        <div class="eachdiv">
+            <label>NAME</label>
+            <input type="text" name="attribute[name]" value="<?php echo $attributes->name; ?>" >
+        </div>
+
+        <div id="inputTypeOptionDiv">
+            <table>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th><input type="button" name="add" value="ADD" id="addOption" /></th>
+                    </tr>
+                </thead>
+                <tbody id="inputTypeOptionTable">
+                    <tr>
+                        <td><input type="text" name="option[exist][]" /></td>
+                        <td><input type="button" name="remove" value="REMOVE 1" class="removeOption" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="option[exist][]" /></td>
+                        <td><input type="button" name="remove" value="REMOVE 2" class="removeOption" ></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="option[exist][]" /></td>
+                        <td><input type="button" name="remove" value="REMOVE 3" class="removeOption" ></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <!-- </td> -->
+
+
+</form>
+
+<table style="display: none;">
+    <tbody id="inputTypeOptionDefault">
+        <tr>
+            <td><input type="text" name="option[new][]" /></td>
+            <td><input type="button" name="remove" value="REMOVE" class="removeOption" ></td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+
+$('.removeOption').click(function () {
+    console.log($(this).parent().parent().remove());
+});
+
+$('#addOption').click(function () {
+    $('#inputTypeOptionTable').prepend($('#inputTypeOptionDefault').html());
+});
+
+$('#inputTypeSelect').change(function () {
+    var inputType = $(this);
+    if (inputType.val() == 'select' || inputType.val() == 'multiSelect' || inputType.val() == 'radio' || inputType.val() == 'checkBox') {
+        $('#inputTypeOptionDiv').show();
+    }
+    else{
+        $('#inputTypeOptionDiv').hide();
+    }
+});
+
+$(document).ready(function () {
+    $('#inputTypeSelect').trigger('change');
+
+});
+
+</script>

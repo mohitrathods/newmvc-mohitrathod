@@ -1,0 +1,78 @@
+<?php
+
+$salesmanId = $this->getSalesmanPriceId();
+$array = $this->getSalesmanPrice();
+
+$salesmanprice = $array[0];
+$salesman = $array[1];
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="skin/css/salesmanprice.css?<?php echo time(); ?>">
+    <title>Salesman Prices</title>
+</head>
+<body>
+<form method="post" action="index.php?c=salesman_price&a=update&id=<?php echo $salesmanId ?>"> 
+<div class="maindiv">
+    <div class="subdiv">
+        <div class="headd">
+            <span>Salesman Price</span>
+            
+            <select>
+                <option>SELECT Salesman</option>
+                <?php foreach($salesman as $eachsalesman) : ?>
+                <option value="<?php echo $eachsalesman['salesman_id'];
+                                    if($eachsalesman['salesman_id'] == $id){
+                                    echo "selected";
+                                    }
+                                ?>">
+                    <?php echo $eachsalesman['first_name'] ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="button">
+            <button type="submit">UPDATE</button>
+        </div>
+    </div>  
+
+    <!-- content -->
+    <div class="table">
+        <table border="1px" border-collapse= "collapse">
+            <tr>
+                <th>Product_id</th>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Cost</th>
+                <th>Price</th>
+                <th>S Price</th>
+                <th>Remove</th>
+            </tr>
+
+            <?php foreach($salesmanprice as $eachsalesmanprice): ?>
+                <tr>
+                    <td><?php echo $eachsalesmanprice['product_id'] ?></td>
+                    <td><?php echo $eachsalesmanprice['name'] ?></td>
+                    <td><?php echo $eachsalesmanprice['sku'] ?></td>
+                    <td><?php echo $eachsalesmanprice['cost'] ?></td>
+                    <td><?php echo $eachsalesmanprice['price'] ?></td>
+                    <td><input type="number" name="sprice[<?php echo $eachsalesmanprice['product_id'];?>]" value="<?php echo $eachsalesmanprice['salesman_price']; ?>"> </td>
+
+                    <td><?php ?>REMOVE</td>
+                </tr>
+            <?php endforeach; ?>
+            
+        </table>
+    </div>
+</div>
+</form>
+</body>
+</html>

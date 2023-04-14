@@ -1,0 +1,57 @@
+<?php
+
+$items =  $this->getCollection()->getData();
+// echo "<pre>";
+// print_r($items);
+// die;
+
+?>
+<body>
+    <div class="maindiv">
+        <div class="subdiv">
+            <div class="headd">
+                <span>Items </span>
+                <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('item', 'add') ?>">Add data</a>
+            </div>
+        </div>  
+        
+        <!-- data table -->
+        <div class="table">
+            <table border="1px" border-collapse= "collapse">
+                <tr>
+                    <th>Item ID</th>
+                    <th>SKU</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                <?php if(!$items): ?>
+                    <tr><td colspan="8">no data available</td></tr>
+                <?php else: ?>
+
+                    <?php
+                    foreach($items as $item){
+                    ?>
+                <tr>
+                        <td><?php echo $item->item_id; ?></td>
+                        <td><?php echo $item->sku; ?></td>
+                        <td><?php echo $item->status; ?></td>
+                        <td><?php echo $item->created_at; ?></td>
+                        <td><?php echo $item->updated_at; ?></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('item', 'edit' , ['id' => $item->item_id]) ?>">EDIT</a></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('item', 'delete' , ['id' => $item->item_id]) ?>">DELETE </a></td>
+                </tr>
+
+                    <?php
+                    }
+                    ?>
+                    <?php endif; ?>
+            </table>
+        </div>
+
+        <div>
+        </div>
+    </div>
+</body>
+</html>

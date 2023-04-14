@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="skin/css/edit.css?<?php echo time(); ?>">
+    <title>Add data</title>
+</head>
+<body>
+<form method="post" action="<?php echo $this->getUrlObj()->getUrl('salesman' , 'insert') ?>">
+    <div class="mainadd">
+        <div class="eachdiv">
+                <label>FIRST NAME</label>
+                <input type="text" name="salesman[first_name]" value="" /> 
+            </div>
+
+            <div class="eachdiv">
+                <label>LAST NAME</label>
+                <input type="text" name="salesman[last_name]" value="" /> 
+            </div>
+
+            <div class="eachdiv">
+                <label>EMAIL</label>
+                <input type="email" name="salesman[email]" value="" />
+            </div>
+
+            <div class="eachdiv">
+                <label>GENDER</label>
+                <select name="salesman[gender]">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <label>MOBILE NO.</label>
+                <input type="tel" name="salesman[mobile]" value="" />
+            </div>
+
+            <div class="eachdiv">
+                <label>STATUS</label>
+                <select name="salesman[status]">
+                    <option value="active">Active</option>
+                    <option value="inactive">inactive</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <label>COMPANY</label>
+                <input type="text" name="salesman[company]" value="" />
+            </div>
+
+            <div class="eachdiv">
+                <input type="submit" class="submitbutton" />
+                <a href="<?php echo $this->getUrlObj()->getUrl('salesman', 'grid',[], true) ?>">CANCEL</a>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

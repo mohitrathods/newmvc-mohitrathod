@@ -1,0 +1,9 @@
+<?php
+$array = $this->getChildren(); //array containing current object and data | e.g. grid array
+// echo "<pre>";
+// print_r($array);
+
+foreach ($array as $eachitem => $value) {
+    $value->render();
+}
+?>

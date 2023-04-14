@@ -1,0 +1,56 @@
+<?php
+$shippings = $this->getCollection()->getData();
+
+?>
+<body>
+<div class="maindiv">
+        <div class="subdiv">
+            <!-- header -->
+            <div class="headerr">
+            </div>
+            <!-- head -->
+            <div class="headd">
+                <span>Shipping</span>
+                <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('shipping', 'add') ?>">Add Shipping</a>
+            </div>
+        </div>  
+        
+        <!-- data table -->
+        <div class="table">
+            <table border="1px" border-collapse= "collapse">
+                <tr>
+                    <th>Shipping id</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>
+                <?php if(!$shippings): ?>
+                    <tr><td colspan="8">no data available</td></tr>
+                <?php else: ?>
+
+                <?php foreach($shippings as $shipping): ?>
+                    <tr>
+                        <td><?php echo $shipping->shipping_method_id ?></td>
+                        <td><?php echo $shipping->name ?></td>
+                        <td><?php echo $shipping->amount ?></td>
+                        <td><?php echo $shipping->status ?></td>
+                        <td><?php echo $shipping->created_at ?></td>
+                        <td><?php echo $shipping->updated_at ?></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('shipping' , 'edit' , ['id' => $shipping->shipping_method_id]) ?>">EDIT</a></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('shipping' , 'delete' ,['id' => $shipping->shipping_method_id]) ?>">DELETE</a></td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </table>
+        </div>
+
+        <div>
+        </div>        
+    </div>
+</body>
+</html>
