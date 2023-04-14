@@ -1,0 +1,88 @@
+<?php
+$vendor = $this->getCollection()[0];
+$address = $this->getCollection()[1];
+// echo "<pre>";
+// print_r($vendor);
+// print_r($address);
+?>
+
+<body>
+<form method="post" action="<?php echo Ccc::getModel('Core_Url')->getUrl('vendor', 'save' , ['id' => $vendor->vendor_id]) ?>">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>FIRST NAME</label>
+            <input type="text"  name="vendor[first_name]" value="<?php echo $vendor->first_name ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>LAST NAME</label>
+            <input type="text"  name="vendor[last_name]" value="<?php echo $vendor->last_name ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label> EMAIL</label>
+            <input type="email"  name="vendor[email]" value="<?php echo $vendor->email ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>GENDER</label>
+            <select name="vendor[gender]">
+                <option value="male <?php if($vendor->gender == 'male') {echo 'selected';} ?>">Male</option>
+                <option value="female <?php if($vendor->gender == 'female'){echo 'selected';} ?>">Female</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>MOBILE</label>
+            <input type="tel"  name="vendor[mobile]" value="<?php echo $vendor->mobile ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATUS</label>
+            <select name="vendor[status]">
+                <option value="active <?php if($vendor->status == 'active'){echo 'selected';} ?>">Active</option>
+                <option value="inactive <?php if($vendor->status == 'inactive'){echo 'selected';} ?>">Inactive</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>COMPANY</label>
+            <input type="text"  name="vendor[company]" value="<?php echo $vendor->company ?>" />
+        </div>
+
+        <!-- VENDOR ADDRESS -->
+        <div class="eachdiv">
+            <label>ADDRESS</label>
+            <input type="text"  name="address[address]" value="<?php echo $address->address ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>CITY</label>
+            <input type="text"  name="address[city]" value="<?php echo $address->city ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATE</label>
+            <input type="text"  name="address[state]" value="<?php echo $address->state ?>" />
+        </div>
+        
+        <div class="eachdiv">
+            <label>COUNTRY</label>
+            <input type="text"  name="address[country]" value="<?php echo $address->country ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>ZIPCODE</label>
+            <input type="number"  name="address[zipcode]" value="<?php echo $address->zipcode ?>" />
+        </div>
+
+        <!-- ------------- -->
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('vendor', 'grid',[], true) ?>">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

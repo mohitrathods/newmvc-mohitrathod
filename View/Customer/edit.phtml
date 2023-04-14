@@ -1,0 +1,115 @@
+<?php
+$customers = $this->getCollection()[0];
+$address = $this->getCollection()[1];
+?>
+<body>
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('customer', 'save' ,['id' => $customers->customer_id] ) ?>" method="post">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>FIRST NAME</label>
+            <input type="text" name="customer[first_name]" value="<?php echo $customers->first_name ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>LAST NAME</label>
+            <input type="text" name="customer[last_name]" value="<?php echo $customers->last_name ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>EMAIL</label>
+            <input type="email" name="customer[email]" value="<?php echo $customers->email ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>GENDER</label>
+            <select name="customer[gender]">
+                <option value="active <?php if($customers->gender == 'male'){echo 'selected';} ?>">male</option>
+                <option value="female <?php if($customers->gender == 'female'){echo 'selected';} ?>">female</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>MOBILE</label>
+            <input type="tel" name="customer[mobile]" value="<?php echo $customers->mobile ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATUS</label>
+            <select name="customer[status]">
+                <option value="active <?php if($customers->status == 'active'){echo 'selected';} ?>">Active</option>
+                <option value="inactive <?php if($customers->status == 'inactive'){echo 'selected';} ?>">Inctive</option>
+            </select>
+        </div>
+
+        
+        <!-- CUSTOMER BILLING ADDRESS -->
+        <div class="eachdiv">
+            <label>Customer Billing</label>
+            <label>ADDRESS</label>
+            <input type="text"  name="billingaddress[address]" value="<?php echo $address->address ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>CITY</label>
+            <input type="text"  name="billingaddress[city]" value="<?php echo $address->city ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATE</label>
+            <input type="text"  name="billingaddress[state]" value="<?php echo $address->state ?>" />
+        </div>
+        
+        <div class="eachdiv">
+            <label>COUNTRY</label>
+            <input type="text"  name="billingaddress[country]" value="<?php echo $address->country ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>ZIPCODE</label>
+            <input type="number"  name="billingaddress[zipcode]" value="<?php echo $address->zipcode ?>" />
+        </div>
+
+        <!-- ------------- -->
+
+
+        
+        <!-- CUSTOMER SHIPPING ADDRESS -->
+        <div class="eachdiv">
+            <label>Customer Shipping</label>
+            <label>ADDRESS</label>
+            <input type="text"  name="shippingaddress[address]" value="<?php echo $address->address ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>CITY</label>
+            <input type="text"  name="shippingaddress[city]" value="<?php echo $address->city ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATE</label>
+            <input type="text"  name="shippingaddress[state]" value="<?php echo $address->state ?>" />
+        </div>
+        
+        <div class="eachdiv">
+            <label>COUNTRY</label>
+            <input type="text"  name="shippingaddress[country]" value="<?php echo $address->country ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>ZIPCODE</label>
+            <input type="number"  name="shippingaddress[zipcode]" value="<?php echo $address->zipcode ?>" />
+        </div>
+
+        <!-- ------------- -->
+
+
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('customer', 'grid',[], true) ?>">CANCEL</a>
+        </div>
+        
+    </div>
+</form>
+</body>
+</html>

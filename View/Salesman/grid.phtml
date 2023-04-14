@@ -1,0 +1,74 @@
+<?php
+$salesmans = $this->getSalesMan();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="skin/css/grid.css?<?php echo time(); ?>">
+    <title>Salesman</title>
+</head>
+<body>
+<div class="maindiv">
+    <div class="subdiv">
+        <div class="headerr">
+            <?php require_once 'view/html/header.phtml'; ?>
+        </div>
+        <div class="headd">
+            <span>Salesman</span>
+            <a href="<?php echo $this->getUrlObj()->getUrl('salesman' , 'add') ?>">Add Salesman</a>
+        </div>
+
+        <!-- tqble data content -->
+        <div class="table">
+            <table border="1px" border-collapse= "collapse">
+                <tr>
+                    <th>Salesman id</th>
+                    <th>First Name</th>
+                    <th>Last NAme</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>Company</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Prices</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>
+
+                <?php foreach($salesmans as $eachitem): ?>
+                    <tr>
+                        <td><?php echo $eachitem['salesman_id'] ?></td>
+                        <td><?php echo $eachitem['first_name'] ?></td>
+                        <td><?php echo $eachitem['last_name'] ?></td>
+                        <td><?php echo $eachitem['email'] ?></td>
+                        <td><?php echo $eachitem['gender'] ?></td>
+                        <td><?php echo $eachitem['mobile'] ?></td>
+                        <td><?php echo $eachitem['status'] ?></td>
+                        <td><?php echo $eachitem['company'] ?></td>
+                        <td><?php echo $eachitem['created_at'] ?></td>
+                        <td><?php echo $eachitem['updated_at'] ?></td>
+                        
+                        <td><a href="<?php echo $this->getUrlObj()->getUrl('salesman_price' , 'grid' , ['id' => $eachitem['salesman_id']]) ?>">SALESMAN PRICES</a></td>
+                        
+                        
+                        <td><a href="<?php echo $this->getUrlObj()->getUrl('salesman', 'edit' , ['id' => $eachitem['salesman_id']]) ?>">EDIT</a></td>
+
+                        <td><a href="<?php echo $this->getUrlObj()->getUrl('salesman', 'delete' , ['id' => $eachitem['salesman_id']]) ?>">DELETE</a></td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    
+        <div>
+            <?php require_once 'View/html/footer.phtml' ?>
+        </div>        
+    </div>
+</div>
+</body>
+</html>

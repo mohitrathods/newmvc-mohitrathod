@@ -1,0 +1,94 @@
+<?php
+
+$fetchedMedia = $this->getCollection()->getData();
+// echo "<pre>";
+// print_r($fetchedMedia);
+?>
+
+<body>
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('product_media' , 'save' , ['id' => Ccc::getModel('Core_Request')->getParam('id')]) ?>" method="post" enctype="multipart/form-data">
+<div class="maindivision">
+    <div class="topdiv">
+        <span>Product Media</span>
+        <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('product_media', 'add' , ['id' => Ccc::getModel('Core_Request')->getParam('id')]) ?>">ADD</a>
+        <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('product','grid') ?>">CANCEL</a>
+        <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('product_media' ,'delete' ,['id' => Ccc::getModel('Core_Request')->getParam('id')]) ?>">DELETE</a>
+        <button>UPDATE</button>
+    </div>
+
+    <style>
+        .failure {
+            color: red;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin  :10px;
+            padding : 4px;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin  :10px;
+            padding : 4px;
+        }
+
+        .notice {
+            color: yellow;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin  :10px;
+            padding : 4px;
+        }
+    </style>
+
+    <?php
+        $messages = Ccc::getModel('Core_Message')->getMessages();
+        if($messages){
+            foreach ($messages as $type => $message) {
+                ?>
+                <p class="<?php echo $type ?>"><?php echo $message ?></p>
+                <?php
+            }
+        }
+
+    ?>
+
+    <div class="bottomdiv">
+        <table border="1px" border-collapse="collapse">
+            <tr>
+                <th>Media ID</th>
+                <th>Product Id</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Base</th>
+                <th>Thumbnail</th>
+                <th>Small</th>
+                <th>Gallery</th>
+                <th><a>DELETE</a></th>
+            </tr>
+
+            <?php foreach($fetchedMedia as $eachitem): ?>
+                <tr>
+                    <td><?php echo $eachitem->media_id ?></td>
+                    <td><?php echo $eachitem->product_id ?></td>
+                    <td><?php echo $eachitem->name ?></td>
+                    <td><?php echo $eachitem->status ?></td>
+                    <td><img src="images/<?php echo $eachitem->image  ?>" width="100px" height="100px" /></td>
+                    <td><input type="radio" name="base"  value="<?php echo $eachitem->media_id ?>" <?php if($eachitem->base == 1){echo "checked";} ?> /></td>
+                    <td><input type="radio" name="thumbnail"  value="<?php echo $eachitem->media_id ?>"  <?php if($eachitem->thumbnail == 1){echo "checked";} ?> /></td>
+                    <td><input type="radio" name="small"  value="<?php echo $eachitem->media_id ?>" <?php if($eachitem->small == 1){echo "checked";} ?> /></td>
+                    <td><input type="checkbox" name="gallery[]" value="<?php echo $eachitem->media_id ?>" <?php if($eachitem->gallery == 1){echo "checked";} ?>  /></td>
+                    <td><input type="checkbox" name="delete[]" value="<?php echo $eachitem->media_id ?>" /></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</div>
+</form>
+</body>
+</html>

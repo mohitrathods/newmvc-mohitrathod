@@ -1,0 +1,35 @@
+<?php
+$payments = $this->getCollection();
+?>
+<body>
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('payment' , 'save' , ['id' => $payments->payment_method_id]) ?>" method="post">
+    <div class="mainadd">
+
+        <div class="eachdiv">
+            <label>NAME</label>
+            <input type="text" name="payment[name]" value="<?php echo $payments->name ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>AMOUNT</label>
+            <input type="number" name="payment[amount]" value="<?php echo $payments->amount ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATUS</label>
+            <select name="payment[status]">
+                <option value="active" <?php if($payments->status == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($payments->status == 'inactive'){echo "selected";} ?>>Inactive</option>
+            </select>
+        </div>
+
+        
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('payment' ,'grid',[],true) ?>">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

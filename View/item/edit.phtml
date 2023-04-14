@@ -1,0 +1,29 @@
+<?php
+
+$collection = $this->getCollection();
+// print_r($collection->item_id);
+// $id = Ccc::getModel('Core_Request')->getParam('id');
+// print_r($id);
+?>
+
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('item', 'save', ['id' => $collection->item_id]) ?>" method="post">
+<div class="mainadd">
+    <div class="eachdiv">
+        <label> SKU </label>
+        <input type="text" name="item[sku]" value="<?php echo $collection->sku ?>" placeholder="name" />
+    </div>
+
+    <div class="eachdiv">
+        <label>STATUS</label>
+            <select name="item[status]">
+                <option value="active <?php if ($collection->status == 'active') {echo "selected";} ?>">active</option>
+                <option value="inactive <?php if ($collection->status == 'inactive') {echo "selected";} ?>">inactive</option>
+            </select>
+    </div>
+
+    <div class="eachdiv">
+        <input type="submit" class="submitbutton" />
+        <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('item', 'grid' ,[], true); ?>">CANCEL</a>
+    </div>		
+
+</form>

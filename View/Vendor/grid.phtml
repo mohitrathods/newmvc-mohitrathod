@@ -1,0 +1,57 @@
+<?php
+$vendors = $this->getCollection()->getData();
+?>
+<body>
+<div class="maindiv">
+    <div class="subdiv">
+        <div class="headd">
+            <span>Vendors</span>
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('vendor', 'add') ?>">Add Vendor</a>
+        </div>
+
+        <!-- tqble data content -->
+        <div class="table">
+            <table border="1px" border-collapse= "collapse">
+                <tr>
+                    <th>Vendor id</th>
+                    <th>First Name</th>
+                    <th>Last NAme</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>Company</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>
+
+                <?php if(!$vendors): ?>
+                <tr><td colspan="8">no data available</td></tr>
+                <?php else: ?>
+
+                <?php foreach($vendors as $vendor): ?>
+                    <tr>
+                        <td><?php echo $vendor->vendor_id; ?></td>
+                        <td><?php echo $vendor->first_name; ?></td>
+                        <td><?php echo $vendor->last_name; ?></td>
+                        <td><?php echo $vendor->email; ?></td>
+                        <td><?php echo $vendor->gender; ?></td>
+                        <td><?php echo $vendor->mobile; ?></td>
+                        <td><?php echo $vendor->status; ?></td>
+                        <td><?php echo $vendor->company; ?></td>
+                        <td><?php echo $vendor->created_at; ?></td>
+                        <td><?php echo $vendor->updated_at; ?></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('vendor', 'edit' , ['id' => $vendor->vendor_id]) ?>">EDIT</a></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('vendor', 'delete' ,['id' => $vendor->vendor_id]) ?>">DELETE</a></td>
+
+                </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

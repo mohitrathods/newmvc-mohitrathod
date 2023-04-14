@@ -1,0 +1,52 @@
+<style>
+
+.failure {
+            color: red;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin  :10px;
+            padding : 4px;
+        }
+
+        .success {
+            color: green;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin  :10px;
+            padding : 4px;
+        }
+
+        .notice {
+            color: yellow;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin  :10px;
+            padding : 4px;
+        }
+    </style>
+
+
+<div>
+        <?php 
+        // Ccc::getModel('Core_Message')->getSession()->start();
+
+            $messages = Ccc::getModel('Core_Message')->getMessages();
+            //array('datanot => 'fail)
+
+            if($messages){
+                foreach($messages as $type => $message) {
+                ?>
+        		    <p class="<?php echo $type ?>"><?php echo $message; ?></p>
+                <?php
+            }
+            }
+
+            // $this->getMessage()->clearMessage();
+            Ccc::getModel('Core_Message')->clearMessage();
+            Ccc::getModel('Core_Message')->getSession()->destroy();
+	        // $this->getMessage()->getSession()->destroy();
+        ?>
+    </div>

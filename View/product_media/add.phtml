@@ -1,0 +1,36 @@
+<?php
+
+$productmedias = $this->getCollection();
+
+?>
+<body>
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('product_media' ,'save' ,['id' => Ccc::getModel('Core_Request')->getParam('id')]) ?>" method="post" enctype="multipart/form-data">
+<div class="maindivv">
+    <div class="topdivv">
+        <input type="submit" />
+        <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('product_media' , 'grid' , ['id' => Ccc::getModel('Core_Request')->getParam('id')]) ?>">CANCEL</a>
+    </div>
+
+    <div class="bottomdivv">
+        <div class="eachdivv">
+            <label>Product Name</label>
+            <input type="name" name="media[name]" placeholder="enter product name" required />
+        </div>
+
+        <div class="eachdiv">
+            <label>sTATUS</label>
+            <select name="media[status]">
+                <option value="active" <?php if($productmedias->status == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($productmedias->status == 'inactive'){echo "selected";} ?>>Inactive</option>
+            </select>
+        </div>
+        
+        <div class="eachdivv">
+            <label>select Image only</label>
+            <input type="file" name="media[image]" required />
+        </div>
+    </div>
+</div>
+</form>
+</body>
+</html>

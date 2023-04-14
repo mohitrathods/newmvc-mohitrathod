@@ -1,0 +1,35 @@
+<?php
+$shippings = $this->getCollection();
+?>
+<body>
+<form action="<?php echo Ccc::getModel('Core_Url')->getUrl('shipping' , 'save' , ['id' => $shippings->shipping_method_id]) ?>" method="post">
+    <div class="mainadd">
+
+        <div class="eachdiv">
+            <label>EDIT NAME</label>
+            <input type="text" name="shipping[name]" value="<?php echo $shippings->name ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>EDIT AMOUNT</label>
+            <input type="number" name="shipping[amount]" value="<?php echo $shippings->amount ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>EDIT STATUS</label>
+            <select name="shipping[status]">
+                <option value="active" <?php if($shippings->status == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($shippings->status == 'inactive'){echo "selected";} ?>>Inactive</option>
+            </select>
+        </div>
+
+        
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('shipping' , 'grid',[], true) ?>">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

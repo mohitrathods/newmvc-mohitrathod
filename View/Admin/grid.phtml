@@ -1,0 +1,56 @@
+<?php
+$admins = $this->getCollection()->getData();
+
+// echo "<pre>";
+// print_r($admins);
+?>
+<body>
+<div class="maindiv">
+        <div class="subdiv">
+            <div class="headd">
+                <span>Admins</span>
+                <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('admin', 'add') ?>">Add Admin</a>
+            </div>
+        </div>  
+        
+        <!-- data table -->
+        <div class="table">
+            <table border="1px" border-collapse= "collapse">
+                <tr>
+                    <th>Admin ID</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th colspan="2">
+                        OPERATIONS</th>
+                </tr>
+                <?php if(!$admins): ?>
+                    <tr><td colspan="8">no data available</td></tr>
+                <?php else: ?>
+
+                    <?php
+                    foreach($admins as $admin){
+                    ?>
+                <tr>
+                        <td><?php echo $admin->admin_id; ?></td>
+                        <td><?php echo $admin->email; ?></td>
+                        <td><?php echo $admin->status; ?></td>
+                        <td><?php echo $admin->created_at; ?></td>
+                        <td><?php echo $admin->updated_at; ?></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('admin', 'edit' , ['id' => $admin->admin_id]) ?>">EDIT</a></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('admin', 'delete' , ['id' => $admin->admin_id]) ?>">DELETE </a></td>
+                </tr>
+
+                    <?php
+                    }
+                    ?>
+                    <?php endif; ?>
+            </table>
+        </div>
+
+        <div>
+        </div>
+    </div>
+</body>
+</html>

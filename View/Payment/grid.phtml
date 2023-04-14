@@ -1,0 +1,55 @@
+<?php
+$payments = $this->getCollection()->getData();
+?>
+<body>
+<div class="maindiv">
+        <div class="subdiv">
+            <!-- head -->
+            <div class="headd">
+                <span>payment</span>
+                <a class="link-success" href="<?php echo Ccc::getModel('Core_Url')->getUrl('payment' , 'add') ?>">Add payment</a>
+            </div>
+        </div>  
+        
+        <!-- data table -->
+        <div class="table">
+            <table class="table" border="1px" border-collapse= "collapse" >
+                <tr>
+                    <!-- <th>payment id</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th> -->
+                    <!-- <th> -->
+                        <?php 
+                            foreach ($this->getColumns() as $key => $column) {
+                                echo "<th>".$column['title']."</th>";
+                            }
+                        ?>
+                    <!-- </th> -->
+                </tr>
+                <?php if(!$payments): ?>
+                    <tr><td colspan="8">no data available</td></tr>
+                
+                <?php else: ?>
+                <?php foreach($payments as $payment): ?>
+                    <tr>
+                        <?php
+                            foreach ($this->getColumns() as $key => $column) {
+                                echo "<td>".$key."</td>";
+                            }
+                        ?>
+
+                        <?php
+                            // foreach ($this->getActions() as $key => $column) {
+                            //     echo "<td>".$key."</td>";
+                            // }
+                        ?>
+                    </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </table>
+        </div>
+    </div>
+</body>

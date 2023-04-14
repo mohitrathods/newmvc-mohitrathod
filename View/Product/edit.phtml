@@ -1,0 +1,80 @@
+<?php
+$products = $this->getCollection();
+?>
+<!-- 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="skin/css/edit.css?<?php echo time(); ?>">
+    <title>Add / Edit Products</title>
+</head>  -->
+<body>
+    <form action="<?php echo Ccc::getModel('Core_Url')->getUrl('product', 'save', ['id' => $products->product_id]) ?>" method="post">
+    
+        <div class="mainadd">
+
+            <div class="eachdiv">
+                <label>NAME</label>
+                <input type="text" name="product[name]" value="<?php echo $products->name ?>" placeholder="name" />
+            </div>
+                
+            <div class="eachdiv">
+                <label>SKU</label>
+                <input type="number" name="product[sku]" value="<?php echo $products->sku ?>" placeholder="enter sku" />
+            </div>
+                
+            <div class="eachdiv">
+                <label>COST</label>
+                <input type="number" name="product[cost]" value="<?php echo $products->cost ?>" placeholder="enter cost" />
+            </div>
+
+            <div class="eachdiv">
+                <label>PRICE</label>
+                <input type="number" name="product[price]" value="<?php echo $products->price ?>" placeholder="enter price" />
+            </div>
+
+            <div class="eachdiv">
+                <label>QUANTITY</label>
+                <input type="number" name="product[quantity]" value="<?php echo $products->quantity ?>" placeholder="enter quantity" />
+            </div>
+
+            <div class="eachdiv">
+                <label>DESCRIPTION</label>
+                <input name="product[description]" value="<?php echo $products->description ?>" placeholder="enter description" />
+            </div>
+
+            <div class="eachdiv">
+                <label>COLOR</label>
+                <select name="product[color]">
+                    <option value="red <?php if ($products->color == 'red') {echo "selected";} ?>">Red</option>
+                    <option value="blue <?php if ($products->color == 'blue') {echo "selected";} ?>">Blue</option>
+                </select>
+            </div>
+            
+            <div class="eachdiv">
+                <label>STATUS</label>
+                <select name="product[status]">
+                    <option value="active <?php if ($products->status == 'active') {echo "selected";} ?>">active</option>
+                    <option value="inactive <?php if ($products->status == 'inactive') {echo "selected";} ?>">inactive</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <label>MATERIAL</label>
+                <select name="product[material]">
+                    <option value="glass <?php if ($products->material == 'glass') {echo "selected";} ?>">Glass</option>
+                    <option value="metal <?php if ($products->material == 'metal') {echo "selected";} ?>">Metal</option>
+                    <option value="plastic <?php if ($products->material == 'plastic') {echo "selected";} ?>">Plastic</option>
+                </select>
+            </div>
+
+            <div class="eachdiv">
+                <input type="submit" class="submitbutton" />
+                <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('product', 'grid' ,[], true); ?>">CANCEL</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

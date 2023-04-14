@@ -1,0 +1,42 @@
+<?php
+$categories = $this->getCategory();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="skin/css/edit.css?<?php echo time(); ?>">
+    <title>Edit category</title>
+</head>
+<body>
+<form action="<?php echo $this->getUrlObj()->getUrl('category', 'update', ['id' => $categories['category_id']]); ?>" method="post">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>EDIT NAME</label>
+            <input type="text" name="category[name]" value="<?php echo $categories['name'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <label>EDIT OPTION</label>
+            <select name="category[status]">
+                <option value="active" <?php if($categories['status'] == 'active' ){echo "selected";} ?>>Active</option>
+                <option value="inactive" <?php if($categories['status'] == 'inactive'){echo "selected";} ?>>Inactive</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>EDIT DESCRIPTION</label>
+            <input type="text" name="category[description]" value="<?php echo $categories['description'] ?>" />
+        </div>
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo $this->getUrlObj()->getUrl('category', 'grid',[], true); ?>">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

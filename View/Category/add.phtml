@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="skin/css/add.css?<?php echo time(); ?>" />
+    <title>ADD data</title>
+</head>
+<body>
+<form action="<?php echo $this->getUrlObj()->getUrl('category', 'insert') ?>" method="post">
+    <div class="mainadd">
+        <div class="eachdiv">
+            <label>NAME</label>
+            <input type="text" name="category[name]" value="" placeholder="Enter category name" />
+        </div>
+
+        <div class="eachdiv">
+            <label>STATUS</label>
+            <select name="category[status]">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
+
+        <div class="eachdiv">
+            <label>DESCRIPTION</label>
+            <input type="text" name="category[description]" value="" placeholder="Enter description" />
+        </div>
+
+        <div class="eachdiv">
+            <input type="submit" class="submitbutton" />
+            <a href="<?php echo $this->getUrlObj()->getUrl('category', 'grid',[], true) ?>">CANCEL</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

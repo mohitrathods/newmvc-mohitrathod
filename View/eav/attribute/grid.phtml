@@ -1,0 +1,63 @@
+<?php
+
+$attributes = $this->getCollection()->getData();
+
+// echo "<pre>";
+// print_r($attributes);
+
+?>
+<body>
+    <div class="maindiv">
+        <div class="subdiv">
+            <div class="headd">
+                <span>Eav attribute </span>
+                <a href="<?php echo Ccc::getModel('Core_Url')->getUrl('eav_attribute', 'add') ?>">Add data</a>
+            </div>
+        </div>  
+        
+        <!-- data table -->
+        <div class="table">
+            <table border="1px" border-collapse= "collapse">
+                <tr>
+                    <th>Attribute ID</th>
+                    <th>Entity type ID</th>
+                    <th>Code</th>
+                    <th>Backend Type</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Backedn model</th>
+                    <th>Input type</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                <?php if(!$attributes): ?>
+                    <tr><td colspan="8">no data available</td></tr>
+                <?php else: ?>
+
+                    <?php
+                    foreach($attributes as $attribute){
+                    ?>
+                <tr>
+                        <td><?php echo $attribute->attribute_id; ?></td>
+                        <td><?php echo $attribute->entity_type_id; ?></td>
+                        <td><?php echo $attribute->code; ?></td>
+                        <td><?php echo $attribute->backend_type; ?></td>
+                        <td><?php echo $attribute->name; ?></td>
+                        <td><?php echo $attribute->status; ?></td>
+                        <td><?php echo $attribute->backend_model; ?></td>
+                        <td><?php echo $attribute->input_type; ?></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('eav_attribute', 'edit' , ['id' => $attribute->attribute_id]) ?>">EDIT</a></td>
+                        <td><a href="<?php echo Ccc::getModel('Core_Url')->getUrl('eav_attribute', 'delete' , ['id' => $attribute->attribute_id]) ?>">DELETE </a></td>
+                </tr>
+
+                    <?php
+                    }
+                    ?>
+                    <?php endif; ?>
+            </table>
+        </div>
+
+        <div>
+        </div>
+    </div>
+</body>
+</html>

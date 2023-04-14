@@ -1,0 +1,49 @@
+    <style>
+        .headerclass{
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .headerclass > a{
+            display: flex;
+            margin: 10px;
+            padding: 10px;
+            text-decoration: none;
+            user-select: none;
+            border-radius: 8px;
+            font-size: 26px;
+            color: white;
+            font-weight: 500;
+            background-color: rgb(109, 109, 255);   
+
+
+            box-shadow: rgb(0,0,128) 0px 4px 2px, #000 0px 4px 3px;
+        }
+      
+        .headerclass >a:active{
+                top: 6px;
+                box-shadow: rgb(0,0,128) 0px 2px 1px, #000 0px 2px 1px;
+
+        }
+
+        
+        </style>
+
+    <div class="headerclass">
+        <a href="index.php?c=product&a=grid">Product</a>
+        <a href="index.php?c=category&a=grid">Category</a>
+        <a href="index.php?c=customer&a=grid">Customer</a>
+        <a href="index.php?c=vendor&a=grid">Vendor</a>
+        <a href="index.php?c=salesman&a=grid">Salesman</a>
+        <a href="index.php?c=shipping&a=grid">Shipping</a>
+        <a href="index.php?c=payment&a=grid">Payment</a>
+        <a href="index.php?c=admin&a=grid">Admin</a>
+        <a href="index.php?c=eav_attribute&a=grid">Attribute</a>
+    </div>
+
+    
